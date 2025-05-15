@@ -67,8 +67,8 @@ const NavBar: React.FC = () => {
     },
     { name: "Serviços", link: isHomePage ? "/#servicos" : "/", hash: "#servicos", id: "servicos" },
     { name: "Projetos", link: "/projetos", id: "projetos" },
-    { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" },
-    { name: "Contato", link: isHomePage ? "/#contato" : "/", hash: "#contato", id: "contato" }
+    { name: "Contato", link: isHomePage ? "/#contato" : "/", hash: "#contato", id: "contato" },
+    { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" }
   ];
 
   // Check if we're on a page that needs dark text regardless of scroll
