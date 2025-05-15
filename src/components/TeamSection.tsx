@@ -12,49 +12,50 @@ const TeamSection: React.FC = () => {
     triggerOnce: true
   });
 
+  // Using the first 4 members from the Equipe page
   const teamMembers = [
     {
-      name: "Dr. João Silva",
-      role: "Coordenador",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      bio: "Professor de Ciência da Computação com doutorado em Engenharia de Software e especialização em Inteligência Artificial.",
+      name: "Dr. Ricardo Oliveira",
+      role: "Coordenador do NDTI",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      bio: "Doutor em Ciência da Computação, com mais de 15 anos de experiência em desenvolvimento de software e gestão de projetos tecnológicos.",
       social: {
         linkedin: "#",
         github: "#",
-        email: "joao.silva@ifnmg.edu.br"
+        email: "ricardo.oliveira@ifnmg.edu.br"
       }
     },
     {
-      name: "Dra. Maria Oliveira",
-      role: "Desenvolvedora Sênior",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
-      bio: "Especialista em desenvolvimento web e mobile com experiência em projetos de grande escala para instituições educacionais.",
+      name: "Ma. Fernanda Santos",
+      role: "Desenvolvedora Full Stack Sênior",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      bio: "Mestre em Engenharia de Software, especialista em desenvolvimento web e mobile. Coordena os projetos de aplicativos institucionais.",
       social: {
         linkedin: "#",
         github: "#",
-        email: "maria.oliveira@ifnmg.edu.br"
+        email: "fernanda.santos@ifnmg.edu.br"
       }
     },
     {
-      name: "Pedro Santos",
-      role: "Administrador de Sistemas",
-      image: "https://randomuser.me/api/portraits/men/22.jpg",
-      bio: "Técnico em TI responsável pela infraestrutura de redes e servidores do NDTI, com certificações em administração de sistemas Linux.",
+      name: "Dr. Carlos Mendes",
+      role: "Especialista em Segurança da Informação",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      bio: "Doutor em Segurança Computacional, responsável pela implementação de políticas de segurança nos sistemas desenvolvidos pelo NDTI.",
       social: {
         linkedin: "#",
         github: "#",
-        email: "pedro.santos@ifnmg.edu.br"
+        email: "carlos.mendes@ifnmg.edu.br"
       }
     },
     {
-      name: "Ana Pereira",
+      name: "Me. Ana Cristina Lima",
       role: "UX/UI Designer",
-      image: "https://randomuser.me/api/portraits/women/29.jpg",
-      bio: "Designer com foco em experiência do usuário e interfaces gráficas, especialista em tornar aplicações tecnológicas acessíveis e intuitivas.",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      bio: "Mestre em Design de Interação, responsável pela criação de interfaces intuitivas e acessíveis para os sistemas do IFNMG.",
       social: {
         linkedin: "#",
         github: "#",
-        email: "ana.pereira@ifnmg.edu.br"
+        email: "ana.lima@ifnmg.edu.br"
       }
     }
   ];
@@ -84,8 +85,8 @@ const TeamSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-5 sm:p-6">
-                <h3 className="text-xl font-semibold text-ndti-800">{member.name}</h3>
-                <p className="text-ndti-600 mb-3">{member.role}</p>
+                <h3 className="text-xl font-semibold text-ndti-800 hover:text-gradient-green-yellow">{member.name}</h3>
+                <p className="text-ndti-600 mb-3 hover:text-gradient-green-yellow">{member.role}</p>
                 <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
                 <div className="flex space-x-3">
                   <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
