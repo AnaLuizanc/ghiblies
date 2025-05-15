@@ -89,12 +89,12 @@ const TeamSection: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="p-5 sm:p-6 border-t-4 border-gradient-to-r border-yellow-400 border-ndti-500">
                 <h3 className="text-xl font-semibold text-ndti-800 hover:text-gradient-green-yellow">{member.name}</h3>
                 <p className="text-ndti-600 mb-3 hover:text-gradient-green-yellow">{member.role}</p>
                 
                 <Sheet>
-                  <SheetTrigger className="text-sm text-ifnmg-green hover:text-ifnmg-blue transition-colors">
+                  <SheetTrigger className="text-sm bg-gradient-to-r from-yellow-400 to-ndti-500 bg-clip-text text-transparent hover:from-yellow-500 hover:to-ndti-600 transition-colors">
                     Ver detalhes
                   </SheetTrigger>
                   <SheetContent className="sm:max-w-md">
@@ -106,17 +106,17 @@ const TeamSection: React.FC = () => {
                       <img 
                         src={member.image} 
                         alt={member.name} 
-                        className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+                        className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-gradient-to-r from-yellow-400 to-ndti-500"
                       />
                       <p className="text-gray-600 mb-6">{member.bio}</p>
                       <div className="flex justify-center space-x-4">
-                        <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                        <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                           <Linkedin className="h-5 w-5" />
                         </a>
-                        <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                        <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                           <Github className="h-5 w-5" />
                         </a>
-                        <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                        <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                           <Mail className="h-5 w-5" />
                         </a>
                       </div>
@@ -125,13 +125,13 @@ const TeamSection: React.FC = () => {
                 </Sheet>
                 
                 <div className="flex space-x-3 mt-3">
-                  <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                  <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                  <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                  <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-gradient-green-yellow hover:bg-gradient-to-r hover:from-yellow-400 hover:to-ndti-500 hover:bg-clip-text hover:text-transparent transition-colors">
                     <Mail className="h-5 w-5" />
                   </a>
                 </div>
@@ -143,7 +143,7 @@ const TeamSection: React.FC = () => {
         <div className="mt-12 text-center">
           <Link 
             to="/equipe"
-            className="inline-flex items-center px-8 py-3 bg-ifnmg-green text-white rounded-md hover:bg-ndti-700 transition-colors"
+            className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-yellow-400 to-ndti-500 hover:from-yellow-500 hover:to-ndti-600 text-white rounded-md transition-colors shadow-lg hover:shadow-xl"
           >
             Ver Equipe Completa
             <ArrowRight className="ml-2 h-4 w-4" />
