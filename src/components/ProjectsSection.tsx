@@ -1,12 +1,15 @@
 
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectsSection: React.FC = () => {
   const [activeProject, setActiveProject] = useState(0);
+  const navigate = useNavigate();
   
   const projects = [
     {
+      id: "1",
       title: "Sistema de Gestão Acadêmica",
       category: "Desenvolvimento Web",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
@@ -14,6 +17,7 @@ const ProjectsSection: React.FC = () => {
       technologies: ["React", "Node.js", "PostgreSQL"]
     },
     {
+      id: "2",
       title: "Aplicativo IFNMG Mobile",
       category: "Aplicativo Móvel",
       image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
@@ -21,6 +25,7 @@ const ProjectsSection: React.FC = () => {
       technologies: ["React Native", "Firebase", "REST API"]
     },
     {
+      id: "3",
       title: "Portal de Eventos",
       category: "Plataforma Web",
       image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
@@ -28,6 +33,7 @@ const ProjectsSection: React.FC = () => {
       technologies: ["Vue.js", "Laravel", "MySQL"]
     },
     {
+      id: "4",
       title: "Sistema de Monitoramento de Laboratórios",
       category: "IoT & Software",
       image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
@@ -72,13 +78,13 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <a 
-                href="#" 
+              <button 
+                onClick={() => navigate(`/projetos/${projects[activeProject].id}`)}
                 className="text-ifnmg-blue hover:text-ndti-700 font-medium flex items-center"
               >
                 Ver detalhes
                 <ArrowRight className="ml-1 h-4 w-4" />
-              </a>
+              </button>
             </div>
           </div>
           
@@ -107,7 +113,10 @@ const ProjectsSection: React.FC = () => {
             </div>
             
             <div className="mt-8 text-center">
-              <button className="px-8 py-3 border border-ifnmg-blue text-ifnmg-blue rounded-md hover:bg-gray-50 transition-colors">
+              <button 
+                onClick={() => navigate('/projetos')}
+                className="px-8 py-3 border border-ifnmg-blue text-ifnmg-blue rounded-md hover:bg-gray-50 transition-colors"
+              >
                 Ver Todos os Projetos
               </button>
             </div>

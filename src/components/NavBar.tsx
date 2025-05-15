@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -11,6 +11,7 @@ const NavBar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -56,21 +57,21 @@ const NavBar: React.FC = () => {
     { name: "Novidades", link: "/novidades", id: "novidades" },
     { 
       name: "Sobre", 
-      link: "#sobre",
+      link: "#",
       id: "sobre",
       dropdown: [
-        { name: "O NDTI", link: "#sobre", id: "sobre" },
-        { name: "Equipe", link: "#equipe", id: "equipe" },
+        { name: "O NDTI", link: "/sobre-ndti", id: "sobre-ndti" },
+        { name: "Equipe", link: "/equipe", id: "equipe" },
       ]
     },
-    { name: "Serviços", link: "#servicos", id: "servicos" },
-    { name: "Projetos", link: "#projetos", id: "projetos" },
+    { name: "Serviços", link: "/", hash: "#servicos", id: "servicos" },
+    { name: "Projetos", link: "/projetos", id: "projetos" },
     { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" },
-    { name: "Contato", link: "#contato", id: "contato" }
+    { name: "Contato", link: "/", hash: "#contato", id: "contato" }
   ];
 
   // Check if we're on a page that needs dark text regardless of scroll
-  const isNonHomePage = window.location.pathname !== '/';
+  const isNonHomePage = location.pathname !== '/';
   const needsDarkText = isNonHomePage || isScrolled;
 
   return (
@@ -117,9 +118,9 @@ const NavBar: React.FC = () => {
                     )} />
                     <div className="absolute hidden group-hover:block top-full left-0 bg-white/95 backdrop-blur-sm p-2 shadow-md rounded min-w-[150px] transform origin-top scale-95 group-hover:scale-100 transition-transform duration-200">
                       {item.dropdown.map((dropItem) => (
-                        <a 
+                        <Link 
                           key={dropItem.name}
-                          href={dropItem.link}
+                          to={dropItem.link}
                           onClick={handleLinkClick}
                           className={cn(
                             "block py-2 px-4 text-sm hover:bg-gray-100/80 rounded transition-colors duration-200",
@@ -127,14 +128,14 @@ const NavBar: React.FC = () => {
                           )}
                         >
                           {dropItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  item.link.startsWith('#') ? (
-                    <a
-                      href={item.link}
+                  item.hash ? (
+                    <Link
+                      to={`${item.link}${item.hash}`}
                       onClick={handleLinkClick}
                       className={cn(
                         "transition-all duration-300 hover:text-ifnmg-blue relative",
@@ -148,7 +149,7 @@ const NavBar: React.FC = () => {
                         "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
                         activeSection === item.id && "w-full"
                       )}></span>
-                    </a>
+                    </Link>
                   ) : (
                     <Link
                       to={item.link}
@@ -216,9 +217,9 @@ const NavBar: React.FC = () => {
                       activeDropdown === item.name ? "max-h-[200px] mt-1" : "max-h-0"
                     )}>
                       {item.dropdown.map((dropItem) => (
-                        <a
+                        <Link
                           key={dropItem.name}
-                          href={dropItem.link}
+                          to={dropItem.link}
                           onClick={handleLinkClick}
                           className={cn(
                             "block py-2.5 px-4 text-sm hover:bg-gray-50 rounded-md",
@@ -226,14 +227,14 @@ const NavBar: React.FC = () => {
                           )}
                         >
                           {dropItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  item.link.startsWith('#') ? (
-                    <a
-                      href={item.link}
+                  item.hash ? (
+                    <Link
+                      to={`${item.link}${item.hash}`}
                       onClick={handleLinkClick}
                       className={cn(
                         "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
@@ -241,7 +242,7 @@ const NavBar: React.FC = () => {
                       )}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ) : (
                     <Link
                       to={item.link}
