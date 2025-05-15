@@ -15,25 +15,24 @@ const AboutSection: React.FC = () => {
     triggerOnce: true
   });
 
-  // Array com os valores do NDTI
   const values = [
     {
-      icon: <Lightbulb className="h-10 w-10 text-gradient-green-yellow" />,
+      icon: <Lightbulb className="h-10 w-10 text-ifnmg-blue" />,
       title: "Inovação",
       description: "Buscamos constantemente novas formas de resolver problemas e criar soluções."
     },
     {
-      icon: <BookOpen className="h-10 w-10 text-gradient-green-yellow" />,
+      icon: <BookOpen className="h-10 w-10 text-ifnmg-blue" />,
       title: "Conhecimento",
       description: "Valorizamos a educação e o desenvolvimento contínuo de habilidades técnicas."
     },
     {
-      icon: <Users className="h-10 w-10 text-gradient-green-yellow" />,
+      icon: <Users className="h-10 w-10 text-ifnmg-blue" />,
       title: "Colaboração",
       description: "Trabalhamos juntos, combinando diferentes especialidades para alcançar objetivos comuns."
     },
     {
-      icon: <Library className="h-10 w-10 text-gradient-green-yellow" />,
+      icon: <Library className="h-10 w-10 text-ifnmg-blue" />,
       title: "Qualidade",
       description: "Comprometemo-nos com a excelência em todos os projetos que desenvolvemos."
     }
@@ -52,13 +51,13 @@ const AboutSection: React.FC = () => {
             )}>
               <h3 className="text-2xl font-semibold mb-4 text-ndti-800">Quem Somos</h3>
               <p className="text-gray-700 mb-4">
-                O <span className="text-gradient-green-yellow font-medium">Núcleo de Desenvolvimento Tecnológico e Inovação</span> (NDTI) do IFNMG Campus Montes Claros é um centro dedicado à pesquisa, desenvolvimento e implementação de soluções tecnológicas inovadoras.
+                O Núcleo de Desenvolvimento Tecnológico e Inovação (NDTI) do IFNMG Campus Montes Claros é um centro dedicado à pesquisa, desenvolvimento e implementação de soluções tecnológicas inovadoras.
               </p>
               <p className="text-gray-700 mb-4">
                 Nossa equipe multidisciplinar é composta por professores, técnicos e estudantes apaixonados por tecnologia e inovação, trabalhando juntos para criar soluções que atendam às necessidades da instituição e da comunidade.
               </p>
               <p className="text-gray-700">
-                Atuamos como um <span className="text-gradient-green-yellow font-medium">laboratório de inovação</span>, incubadora de ideias e centro de desenvolvimento tecnológico, conectando o conhecimento acadêmico às demandas reais da sociedade.
+                Atuamos como um laboratório de inovação, incubadora de ideias e centro de desenvolvimento tecnológico, conectando o conhecimento acadêmico às demandas reais da sociedade.
               </p>
             </div>
             <div className={cn(
@@ -66,7 +65,7 @@ const AboutSection: React.FC = () => {
               textInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             )}>
               <div className="relative">
-                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-ifnmg-green to-yellow-400 opacity-75 blur"></div>
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-ndti-700 to-ifnmg-blue opacity-75 blur"></div>
                 <div className="relative bg-white p-2 sm:p-4 rounded-lg shadow-lg">
                   <img 
                     src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
@@ -93,7 +92,7 @@ const AboutSection: React.FC = () => {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="flex justify-center mb-4 icon-interactive">{value.icon}</div>
-                <h4 className="text-xl font-semibold mb-2 text-gradient-green-yellow">{value.title}</h4>
+                <h4 className="text-xl font-semibold mb-2 text-ndti-800">{value.title}</h4>
                 <p className="text-gray-600">{value.description}</p>
               </div>
             ))}
