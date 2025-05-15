@@ -5,7 +5,6 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const AboutSection: React.FC = () => {
-  // Usando o hook useInView para animações baseadas no scroll
   const { ref: textRef, inView: textInView } = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -16,7 +15,6 @@ const AboutSection: React.FC = () => {
     triggerOnce: true
   });
 
-  // Valores do NDTI
   const values = [
     {
       icon: <Lightbulb className="h-10 w-10 text-ifnmg-blue" />,
@@ -43,10 +41,7 @@ const AboutSection: React.FC = () => {
   return (
     <section id="sobre" className="py-16 sm:py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
-        {/* Título da seção com gradiente verde-amarelo */}
-        <h2 className="section-heading mb-12 sm:mb-16">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-yellow-400">Sobre o NDTI</span>
-        </h2>
+        <h2 className="section-heading mb-12 sm:mb-16">Sobre o NDTI</h2>
         
         <div className="mb-16" ref={textRef}>
           <div className="flex flex-col md:flex-row items-center">
@@ -54,8 +49,7 @@ const AboutSection: React.FC = () => {
               "md:w-1/2 mb-8 md:mb-0 md:pr-8 transition-all duration-700",
               textInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             )}>
-              {/* Subtítulo com gradiente */}
-              <h3 className="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-ndti-600">Quem Somos</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-ndti-800">Quem Somos</h3>
               <p className="text-gray-700 mb-4">
                 O Núcleo de Desenvolvimento Tecnológico e Inovação (NDTI) do IFNMG Campus Montes Claros é um centro dedicado à pesquisa, desenvolvimento e implementação de soluções tecnológicas inovadoras.
               </p>
@@ -86,8 +80,7 @@ const AboutSection: React.FC = () => {
         </div>
 
         <div ref={valuesRef}>
-          {/* Subtítulo de valores com gradiente */}
-          <h3 className="text-2xl font-semibold text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-yellow-400">Nossos Valores</h3>
+          <h3 className="text-2xl font-semibold text-center mb-8 sm:mb-12 text-ndti-800">Nossos Valores</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {values.map((value, index) => (
               <div 
@@ -99,8 +92,7 @@ const AboutSection: React.FC = () => {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="flex justify-center mb-4 icon-interactive">{value.icon}</div>
-                {/* Títulos dos cards com gradiente */}
-                <h4 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-ndti-700 to-yellow-500">{value.title}</h4>
+                <h4 className="text-xl font-semibold mb-2 text-ndti-800">{value.title}</h4>
                 <p className="text-gray-600">{value.description}</p>
               </div>
             ))}

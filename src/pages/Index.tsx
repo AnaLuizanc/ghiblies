@@ -12,10 +12,10 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  // Acompanha o progresso de rolagem para o indicador de progresso
+  // Track scroll progress for progress indicator
   const [scrollProgress, setScrollProgress] = useState(0);
   
-  // Cria referências para cada seção com threshold e rootMargin para melhor detecção
+  // Create refs for each section with threshold and rootMargin for better detection
   const [heroRef, heroInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [newsRef, newsInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [aboutRef, aboutInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
@@ -24,7 +24,7 @@ const Index = () => {
   const [teamRef, teamInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [contactRef, contactInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
 
-  // Atualiza a seção ativa com base em qual seção está sendo visualizada
+  // Update active section based on which section is in view
   useEffect(() => {
     if (heroInView) dispatchSectionEvent('hero');
     else if (newsInView) dispatchSectionEvent('novidades');
@@ -35,14 +35,13 @@ const Index = () => {
     else if (contactInView) dispatchSectionEvent('contato');
   }, [heroInView, newsInView, aboutInView, servicesInView, projectsInView, teamInView, contactInView]);
 
-  // Dispara evento personalizado para comunicar mudanças de seção
   const dispatchSectionEvent = (section: string) => {
     window.dispatchEvent(
       new CustomEvent('sectionChange', { detail: { section } })
     );
   };
 
-  // Acompanha o progresso de rolagem para o indicador de progresso
+  // Track scroll progress for progress indicator
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.body.scrollHeight - window.innerHeight;
@@ -54,17 +53,17 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Implementa carregamento lazy para imagens
+  // Implement lazy loading for images
   useEffect(() => {
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     
     if ('loading' in HTMLImageElement.prototype) {
-      // O navegador suporta carregamento lazy nativo
+      // Browser supports native lazy loading
       lazyImages.forEach(img => {
         img.classList.add('lazy-loaded');
       });
     } else {
-      // Fallback para navegadores que não suportam carregamento lazy nativo
+      // Fallback for browsers that don't support native lazy loading
       const lazyImageObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -84,13 +83,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Indicador de progresso */}
+      {/* Progress indicator */}
       <div 
         className="progress-indicator"
         style={{ width: `${scrollProgress}%` }}
       ></div>
       
-      {/* Componentes da página */}
       <NavBar />
       <main>
         <div ref={heroRef}>

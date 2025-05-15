@@ -14,7 +14,6 @@ const NavBar: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // Função para alternar o menu mobile
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     if (isOpen) {
@@ -22,12 +21,11 @@ const NavBar: React.FC = () => {
     }
   };
 
-  // Função para alternar os dropdowns
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
-  // Detecta o scroll para mudar o background da navbar
+  // Handle scroll events to detect when the navbar should have background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -37,7 +35,7 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Atualiza a seção ativa a partir de eventos externos
+  // Update active section from external sources (like IntersectionObserver in Index.tsx)
   useEffect(() => {
     const handleSectionChange = (event: CustomEvent) => {
       setActiveSection(event.detail.section);
@@ -47,7 +45,7 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('sectionChange' as any, handleSectionChange);
   }, []);
 
-  // Fecha o menu mobile ao clicar em um link
+  // Close mobile menu when clicking a link
   const handleLinkClick = () => {
     if (isMobile) {
       setIsOpen(false);
@@ -55,19 +53,25 @@ const NavBar: React.FC = () => {
     }
   };
 
-  // Items do menu principal - Separando "Sobre" em dois itens: "O NDTI" e "Equipe"
   const menuItems = [
     { name: "Home", link: "/", id: "hero" },
     { name: "Novidades", link: "/novidades", id: "novidades" },
-    { name: "O NDTI", link: "/sobre-ndti", id: "sobre-ndti" },
-    { name: "Equipe", link: isHomePage ? "/#equipe" : "/equipe", id: "equipe" },
+    { 
+      name: "Sobre", 
+      link: "#",
+      id: "sobre",
+      dropdown: [
+        { name: "O NDTI", link: "/sobre-ndti", id: "sobre-ndti" },
+        { name: "Equipe", link: isHomePage ? "/#equipe" : "/equipe", id: "equipe" },
+      ]
+    },
     { name: "Serviços", link: isHomePage ? "/#servicos" : "/", hash: "#servicos", id: "servicos" },
     { name: "Projetos", link: "/projetos", id: "projetos" },
     { name: "Contato", link: isHomePage ? "/#contato" : "/", hash: "#contato", id: "contato" },
     { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" }
   ];
 
-  // Verifica se precisa de texto escuro independente do scroll
+  // Check if we're on a page that needs dark text regardless of scroll
   const isNonHomePage = location.pathname !== '/';
   const needsDarkText = isNonHomePage || isScrolled;
 
@@ -91,50 +95,86 @@ const NavBar: React.FC = () => {
             </Link>
           </div>
           
-          {/* Menu Desktop */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 lg:space-x-10">
             {menuItems.map((item) => (
               <div key={item.name} className="relative group">
-                {item.hash ? (
-                  <Link
-                    to={`${item.link}${item.hash}`}
-                    onClick={handleLinkClick}
-                    className={cn(
+                {item.dropdown ? (
+                  <div className="flex items-center cursor-pointer">
+                    <span className={cn(
                       "transition-all duration-300 hover:text-ifnmg-blue relative",
-                      activeSection === item.id 
+                      activeSection === item.id || item.dropdown.some(d => d.id === activeSection)
                         ? "text-ifnmg-blue font-medium" 
                         : needsDarkText ? "text-gray-600" : "text-white"
-                    )}
-                  >
-                    {item.name}
-                    <span className={cn(
-                      "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
-                      activeSection === item.id && "w-full"
-                    )}></span>
-                  </Link>
+                    )}>
+                      {item.name}
+                      <span className={cn(
+                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 group-hover:w-full",
+                        (activeSection === item.id || item.dropdown.some(d => d.id === activeSection)) && "w-full"
+                      )}></span>
+                    </span>
+                    <ChevronDown className={cn(
+                      "ml-1 h-4 w-4 transition-transform duration-300 group-hover:rotate-180",
+                      needsDarkText ? "text-gray-600" : "text-white"
+                    )} />
+                    <div className="absolute hidden group-hover:block top-full left-0 bg-white/95 backdrop-blur-sm p-2 shadow-md rounded min-w-[150px] transform origin-top scale-95 group-hover:scale-100 transition-transform duration-200">
+                      {item.dropdown.map((dropItem) => (
+                        <Link 
+                          key={dropItem.name}
+                          to={dropItem.link}
+                          onClick={handleLinkClick}
+                          className={cn(
+                            "block py-2 px-4 text-sm hover:bg-gray-100/80 rounded transition-colors duration-200",
+                            activeSection === dropItem.id ? "text-ifnmg-blue font-medium" : "text-gray-700"
+                          )}
+                        >
+                          {dropItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
-                  <Link
-                    to={item.link}
-                    onClick={handleLinkClick}
-                    className={cn(
-                      "transition-all duration-300 hover:text-ifnmg-blue relative",
-                      activeSection === item.id 
-                        ? "text-ifnmg-blue font-medium" 
-                        : needsDarkText ? "text-gray-600" : "text-white"
-                    )}
-                  >
-                    {item.name}
-                    <span className={cn(
-                      "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
-                      activeSection === item.id && "w-full"
-                    )}></span>
-                  </Link>
+                  item.hash ? (
+                    <Link
+                      to={`${item.link}${item.hash}`}
+                      onClick={handleLinkClick}
+                      className={cn(
+                        "transition-all duration-300 hover:text-ifnmg-blue relative",
+                        activeSection === item.id 
+                          ? "text-ifnmg-blue font-medium" 
+                          : needsDarkText ? "text-gray-600" : "text-white"
+                      )}
+                    >
+                      {item.name}
+                      <span className={cn(
+                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
+                        activeSection === item.id && "w-full"
+                      )}></span>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={item.link}
+                      onClick={handleLinkClick}
+                      className={cn(
+                        "transition-all duration-300 hover:text-ifnmg-blue relative",
+                        activeSection === item.id 
+                          ? "text-ifnmg-blue font-medium" 
+                          : needsDarkText ? "text-gray-600" : "text-white"
+                      )}
+                    >
+                      {item.name}
+                      <span className={cn(
+                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
+                        activeSection === item.id && "w-full"
+                      )}></span>
+                    </Link>
+                  )
                 )}
               </div>
             ))}
           </div>
 
-          {/* Botão do Menu Mobile */}
+          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button 
               onClick={toggleMenu} 
@@ -149,7 +189,7 @@ const NavBar: React.FC = () => {
           </div>
         </div>
 
-        {/* Menu Mobile */}
+        {/* Mobile Menu */}
         <div className={cn(
           "md:hidden overflow-hidden transition-all duration-300 max-h-0 bg-white/95 backdrop-blur-sm rounded-b-lg shadow-md",
           isOpen ? "max-h-[500px] mt-3 p-3" : "max-h-0"
@@ -157,28 +197,65 @@ const NavBar: React.FC = () => {
           <div className="space-y-1">
             {menuItems.map((item) => (
               <div key={item.name}>
-                {item.hash ? (
-                  <Link
-                    to={`${item.link}${item.hash}`}
-                    onClick={handleLinkClick}
-                    className={cn(
-                      "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
-                      activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
+                {item.dropdown ? (
+                  <div>
+                    <button
+                      onClick={() => toggleDropdown(item.name)}
+                      className={cn(
+                        "w-full flex justify-between items-center px-4 py-2.5 text-base transition-colors hover:bg-gray-50 rounded-md",
+                        (activeSection === item.id || item.dropdown.some(d => d.id === activeSection)) 
+                          ? "text-ifnmg-blue font-medium" : "text-gray-600"
+                      )}
+                    >
+                      {item.name}
+                      <ChevronDown className={cn(
+                        "transition-transform duration-300 h-4 w-4", 
+                        activeDropdown === item.name ? "rotate-180" : ""
+                      )} />
+                    </button>
+                    <div className={cn(
+                      "pl-6 space-y-1 overflow-hidden transition-all duration-300", 
+                      activeDropdown === item.name ? "max-h-[200px] mt-1" : "max-h-0"
+                    )}>
+                      {item.dropdown.map((dropItem) => (
+                        <Link
+                          key={dropItem.name}
+                          to={dropItem.link}
+                          onClick={handleLinkClick}
+                          className={cn(
+                            "block py-2.5 px-4 text-sm hover:bg-gray-50 rounded-md",
+                            activeSection === dropItem.id ? "text-ifnmg-blue font-medium" : "text-gray-700"
+                          )}
+                        >
+                          {dropItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
-                  <Link
-                    to={item.link}
-                    onClick={handleLinkClick}
-                    className={cn(
-                      "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
-                      activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
+                  item.hash ? (
+                    <Link
+                      to={`${item.link}${item.hash}`}
+                      onClick={handleLinkClick}
+                      className={cn(
+                        "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
+                        activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <Link
+                      to={item.link}
+                      onClick={handleLinkClick}
+                      className={cn(
+                        "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
+                        activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 )}
               </div>
             ))}
