@@ -13,7 +13,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 222.2 47.4% 11.2%;
+  --primary: 142 50% 20%;
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96.1%;
@@ -83,7 +83,7 @@ body {
   
   /* Custom section heading style */
   .section-heading {
-    @apply text-3xl md:text-4xl font-bold text-center text-ndti-800 relative pb-4 mb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-ifnmg-blue after:to-ndti-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-24 hover:after:bg-ndti-600;
+    @apply text-3xl md:text-4xl font-bold text-center text-ndti-800 relative pb-4 mb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-ifnmg-green after:to-ndti-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-24 hover:after:bg-ndti-600;
   }
   
   /* Interactive card hover effect */
@@ -97,7 +97,7 @@ body {
   }
   
   .btn-primary {
-    @apply btn bg-ifnmg-blue text-white hover:bg-ifnmg-blue/90 focus:ring-ifnmg-blue;
+    @apply btn bg-ifnmg-green text-white hover:bg-ifnmg-green/90 focus:ring-ifnmg-green;
   }
   
   /* Course-style content section */

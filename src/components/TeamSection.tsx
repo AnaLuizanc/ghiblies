@@ -60,7 +60,7 @@ const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section id="equipe" className="py-16 bg-white">
+    <section id="equipe" className="py-16 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
         <h2 className="section-heading mb-16">Nossa Equipe</h2>
         
@@ -88,13 +88,13 @@ const TeamSection: React.FC = () => {
                 <p className="text-ndti-600 mb-3">{member.role}</p>
                 <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
                 <div className="flex space-x-3">
-                  <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ndti-700 transition-colors">
+                  <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-ndti-700 transition-colors">
+                  <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-ifnmg-green transition-colors">
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-ndti-700 transition-colors">
+                  <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-ifnmg-green transition-colors">
                     <Mail className="h-5 w-5" />
                   </a>
                 </div>
@@ -106,7 +106,7 @@ const TeamSection: React.FC = () => {
         <div className="mt-8 text-center">
           <Link 
             to="/equipe"
-            className="px-8 py-3 bg-ifnmg-blue text-white rounded-md hover:bg-ndti-700 transition-colors"
+            className="px-8 py-3 bg-ifnmg-green text-white rounded-md hover:bg-ndti-700 transition-colors"
           >
             Ver Equipe Completa
             <ArrowRight className="ml-1 inline-block h-4 w-4" />
