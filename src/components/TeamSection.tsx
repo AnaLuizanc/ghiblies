@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Linkedin, Github, Mail } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 const TeamSection: React.FC = () => {
   const { ref, inView } = useInView({ 
@@ -63,7 +64,11 @@ const TeamSection: React.FC = () => {
   return (
     <section id="equipe" className="py-16 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="section-heading mb-16">Nossa Equipe</h2>
+        <h2 className="section-heading mb-8">Nossa Equipe</h2>
+        <p className="text-gray-600 max-w-2xl mx-auto text-center mb-12">
+          Conheça os profissionais que compõem o NDTI, uma equipe multidisciplinar comprometida com 
+          a inovação tecnológica e o desenvolvimento de soluções para o IFNMG Campus Montes Claros.
+        </p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {teamMembers.map((member, index) => (
@@ -87,8 +92,39 @@ const TeamSection: React.FC = () => {
               <div className="p-5 sm:p-6">
                 <h3 className="text-xl font-semibold text-ndti-800 hover:text-gradient-green-yellow">{member.name}</h3>
                 <p className="text-ndti-600 mb-3 hover:text-gradient-green-yellow">{member.role}</p>
-                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                <div className="flex space-x-3">
+                
+                <Sheet>
+                  <SheetTrigger className="text-sm text-ifnmg-green hover:text-ifnmg-blue transition-colors">
+                    Ver detalhes
+                  </SheetTrigger>
+                  <SheetContent className="sm:max-w-md">
+                    <SheetHeader>
+                      <SheetTitle>{member.name}</SheetTitle>
+                      <SheetDescription>{member.role}</SheetDescription>
+                    </SheetHeader>
+                    <div className="mt-6">
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+                      />
+                      <p className="text-gray-600 mb-6">{member.bio}</p>
+                      <div className="flex justify-center space-x-4">
+                        <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                          <Linkedin className="h-5 w-5" />
+                        </a>
+                        <a href={member.social.github} aria-label="GitHub" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                          <Github className="h-5 w-5" />
+                        </a>
+                        <a href={`mailto:${member.social.email}`} aria-label="Email" className="text-gray-400 hover:text-ifnmg-green transition-colors">
+                          <Mail className="h-5 w-5" />
+                        </a>
+                      </div>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+                
+                <div className="flex space-x-3 mt-3">
                   <a href={member.social.linkedin} aria-label="LinkedIn" className="text-gray-400 hover:text-ifnmg-green transition-colors">
                     <Linkedin className="h-5 w-5" />
                   </a>
@@ -104,13 +140,13 @@ const TeamSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link 
             to="/equipe"
-            className="px-8 py-3 bg-ifnmg-green text-white rounded-md hover:bg-ndti-700 transition-colors"
+            className="inline-flex items-center px-8 py-3 bg-ifnmg-green text-white rounded-md hover:bg-ndti-700 transition-colors"
           >
             Ver Equipe Completa
-            <ArrowRight className="ml-1 inline-block h-4 w-4" />
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
       </div>

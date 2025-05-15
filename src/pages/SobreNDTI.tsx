@@ -2,6 +2,8 @@
 import React from 'react';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Users } from 'lucide-react';
 
 const SobreNDTI: React.FC = () => {
   return (
@@ -74,6 +76,17 @@ const SobreNDTI: React.FC = () => {
                       </div>
                     </li>
                   </ul>
+                </div>
+                
+                <div className="mt-8">
+                  <Link 
+                    to="/equipe" 
+                    className="inline-flex items-center px-6 py-3 bg-ifnmg-green text-white rounded-md hover:bg-ndti-700 transition-colors"
+                  >
+                    <Users className="mr-2 h-5 w-5" />
+                    Conheça Nossa Equipe
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </div>
               </div>
               
