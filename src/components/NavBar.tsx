@@ -12,6 +12,7 @@ const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -61,13 +62,13 @@ const NavBar: React.FC = () => {
       id: "sobre",
       dropdown: [
         { name: "O NDTI", link: "/sobre-ndti", id: "sobre-ndti" },
-        { name: "Equipe", link: "/equipe", id: "equipe" },
+        { name: "Equipe", link: isHomePage ? "/#equipe" : "/equipe", id: "equipe" },
       ]
     },
-    { name: "Serviços", link: "/", hash: "#servicos", id: "servicos" },
+    { name: "Serviços", link: isHomePage ? "/#servicos" : "/", hash: "#servicos", id: "servicos" },
     { name: "Projetos", link: "/projetos", id: "projetos" },
     { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" },
-    { name: "Contato", link: "/", hash: "#contato", id: "contato" }
+    { name: "Contato", link: isHomePage ? "/#contato" : "/", hash: "#contato", id: "contato" }
   ];
 
   // Check if we're on a page that needs dark text regardless of scroll

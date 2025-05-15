@@ -1,5 +1,6 @@
-
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Github, Mail } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
@@ -58,9 +59,9 @@ const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section id="equipe" className="py-16 sm:py-20">
-      <div className="container mx-auto px-4 sm:px-6" ref={ref}>
-        <h2 className="section-heading mb-12 sm:mb-16">Nossa Equipe</h2>
+    <section id="equipe" className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="section-heading mb-16">Nossa Equipe</h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {teamMembers.map((member, index) => (
@@ -101,10 +102,14 @@ const TeamSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="mt-12 sm:mt-16 text-center">
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Nossa equipe é composta por profissionais altamente qualificados e estudantes dedicados a inovação tecnológica.
-          </p>
+        <div className="mt-8 text-center">
+          <Link 
+            to="/equipe"
+            className="px-8 py-3 bg-ifnmg-blue text-white rounded-md hover:bg-ndti-700 transition-colors"
+          >
+            Ver Equipe Completa
+            <ArrowRight className="ml-1 inline-block h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

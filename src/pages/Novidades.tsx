@@ -18,14 +18,6 @@ const Novidades: React.FC = () => {
       type: "edital"
     },
     {
-      id: 2,
-      title: "Sistema de Gestão de Laboratórios",
-      description: "Nova solução desenvolvida pelo NDTI permite o monitoramento em tempo real dos equipamentos dos laboratórios, otimizando o uso dos recursos e detectando falhas precocemente.",
-      date: "2025-05-05",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3",
-      type: "projeto"
-    },
-    {
       id: 3,
       title: "Workshop de Desenvolvimento Web",
       description: "Nos dias 15 e 16 de maio, o NDTI realizará um workshop gratuito sobre tecnologias modernas para desenvolvimento web. Inscreva-se e aprenda sobre React, Node.js e muito mais.",
@@ -42,28 +34,12 @@ const Novidades: React.FC = () => {
       type: "edital"
     },
     {
-      id: 5,
-      title: "App de Monitoramento de Presença",
-      description: "Aplicativo desenvolvido pela equipe do NDTI facilita o controle de frequência em aulas e eventos através de geolocalização e QR code.",
-      date: "2025-04-15",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3",
-      type: "projeto"
-    },
-    {
       id: 6,
       title: "Hackathon IFNMG 2025",
       description: "O maior evento de tecnologia e inovação do Norte de Minas está chegando! Forme sua equipe e participe dessa maratona de desenvolvimento de soluções tecnológicas.",
       date: "2025-04-10",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3",
       type: "evento"
-    },
-    {
-      id: 7,
-      title: "Plataforma de Gerenciamento de TCC",
-      description: "Nova ferramenta facilita o acompanhamento de trabalhos de conclusão de curso, permitindo interação entre orientadores e alunos em um ambiente digital.",
-      date: "2025-04-01",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3",
-      type: "projeto"
     },
     {
       id: 8,
@@ -91,13 +67,13 @@ const Novidades: React.FC = () => {
               Novidades e Comunicados
             </h1>
             <p className="text-gray-600 max-w-3xl">
-              Fique por dentro das últimas atualizações, editais, projetos e eventos do Núcleo de Desenvolvimento Tecnológico e Inovação do IFNMG Campus Montes Claros.
+              Fique por dentro das últimas atualizações, editais e eventos do Núcleo de Desenvolvimento Tecnológico e Inovação do IFNMG Campus Montes Claros.
             </p>
           </header>
 
           <div className="mb-10">
             <div className="flex flex-wrap gap-3 mb-6">
-              {["todos", "edital", "projeto", "evento"].map((filter) => (
+              {["todos", "edital", "evento"].map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
@@ -108,8 +84,7 @@ const Novidades: React.FC = () => {
                   }`}
                 >
                   {filter === "todos" ? "Todos" : 
-                   filter === "edital" ? "Editais" : 
-                   filter === "projeto" ? "Projetos" : "Eventos"}
+                   filter === "edital" ? "Editais" : "Eventos"}
                 </button>
               ))}
             </div>
@@ -130,11 +105,9 @@ const Novidades: React.FC = () => {
                     <div className="flex justify-between items-start mb-3">
                       <span className={`text-xs font-semibold px-2 py-1 rounded-full inline-block ${
                         item.type === 'edital' ? 'bg-ndti-500 text-white' : 
-                        item.type === 'projeto' ? 'bg-ifnmg-blue text-white' : 
                         'bg-gray-100 text-ndti-800'
                       }`}>
-                        {item.type === 'edital' ? 'Edital' : 
-                         item.type === 'projeto' ? 'Projeto' : 'Evento'}
+                        {item.type === 'edital' ? 'Edital' : 'Evento'}
                       </span>
                       <span className="text-sm text-gray-500">
                         {new Date(item.date).toLocaleDateString('pt-BR')}
@@ -144,13 +117,13 @@ const Novidades: React.FC = () => {
                     <h3 className="text-xl font-bold text-ndti-800 mb-3">{item.title}</h3>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.description}</p>
                     
-                    <a 
-                      href="#" 
+                    <Link 
+                      to={`/novidades/${item.id}`}
                       className="text-ifnmg-blue hover:text-ndti-700 font-medium flex items-center text-sm"
                     >
                       Ler mais
                       <ArrowRight className="ml-1 h-4 w-4" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}

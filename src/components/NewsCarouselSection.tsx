@@ -102,30 +102,36 @@ const NewsCarouselSection: React.FC = () => {
                   key={item.id} 
                   className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
                 >
-                  <Link to="/novidades" className="block">
-                    <div className="relative overflow-hidden rounded-xl group card-hover">
-                      <div className="aspect-ratio h-48 md:h-64 overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                      
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4 md:p-6">
-                        <span className={`text-xs font-semibold px-2 py-1 rounded-full mb-2 inline-block w-fit ${
-                          item.type === 'edital' ? 'bg-ndti-500 text-white' : 
-                          item.type === 'projeto' ? 'bg-ifnmg-blue text-white' : 
-                          'bg-white text-ndti-800'
-                        }`}>
-                          {item.type === 'edital' ? 'Edital' : 
-                           item.type === 'projeto' ? 'Projeto' : 'Evento'}
-                        </span>
-                        <h3 className="text-xl text-white font-bold mb-2">{item.title}</h3>
-                        <p className="text-gray-200 text-sm line-clamp-2">{item.description}</p>
-                      </div>
+                  <div className="relative overflow-hidden rounded-xl group card-hover">
+                    <div className="aspect-ratio h-48 md:h-64 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     </div>
-                  </Link>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4 md:p-6">
+                      <span className={`text-xs font-semibold px-2 py-1 rounded-full mb-2 inline-block w-fit ${
+                        item.type === 'edital' ? 'bg-ndti-500 text-white' : 
+                        item.type === 'projeto' ? 'bg-ifnmg-blue text-white' : 
+                        'bg-white text-ndti-800'
+                      }`}>
+                        {item.type === 'edital' ? 'Edital' : 
+                         item.type === 'projeto' ? 'Projeto' : 'Evento'}
+                      </span>
+                      <h3 className="text-xl text-white font-bold mb-2">{item.title}</h3>
+                      <p className="text-gray-200 text-sm line-clamp-2">{item.description}</p>
+                      
+                      <Link 
+                        to={`/novidades/${item.id}`} 
+                        className="mt-3 inline-block text-white hover:text-ndti-100 font-medium text-sm"
+                      >
+                        Ler mais
+                        <ArrowRight className="ml-1 inline-block h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
