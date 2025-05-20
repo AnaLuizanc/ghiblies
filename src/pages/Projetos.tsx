@@ -4,67 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
+import { getAllProjects } from '@/data/projects';
 
 const Projetos: React.FC = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('todos');
   
-  const projects = [
-    {
-      id: "1",
-      title: "Sistema de Gestão Acadêmica",
-      category: "Desenvolvimento Web",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Desenvolvimento de um sistema integrado para gestão de atividades acadêmicas, incluindo controle de frequência, notas e material didático.",
-      technologies: ["React", "Node.js", "PostgreSQL"]
-    },
-    {
-      id: "2",
-      title: "Aplicativo IFNMG Mobile",
-      category: "Aplicativo Móvel",
-      image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Aplicativo móvel que permite aos alunos e servidores acessarem informações acadêmicas, notícias e serviços do campus.",
-      technologies: ["React Native", "Firebase", "REST API"]
-    },
-    {
-      id: "3",
-      title: "Portal de Eventos",
-      category: "Plataforma Web",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Sistema para gestão de eventos acadêmicos, incluindo inscrições, emissão de certificados e programação.",
-      technologies: ["Vue.js", "Laravel", "MySQL"]
-    },
-    {
-      id: "4",
-      title: "Sistema de Monitoramento de Laboratórios",
-      category: "IoT & Software",
-      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Solução para monitoramento remoto de equipamentos e condições ambientais dos laboratórios do campus.",
-      technologies: ["Python", "Arduino", "MQTT", "MongoDB"]
-    },
-    {
-      id: "5",
-      title: "Biblioteca Digital",
-      category: "Plataforma Web",
-      image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Repositório digital para obras acadêmicas, artigos científicos e materiais didáticos produzidos pelo IFNMG.",
-      technologies: ["React", "Express", "MongoDB"]
-    },
-    {
-      id: "6",
-      title: "Sistema de Reserva de Laboratórios",
-      category: "Desenvolvimento Web",
-      image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Plataforma para agendamento e gerenciamento de reservas dos laboratórios do campus.",
-      technologies: ["Angular", "Spring Boot", "PostgreSQL"]
-    }
-  ];
-
-  const categories = ['todos', 'Desenvolvimento Web', 'Aplicativo Móvel', 'Plataforma Web', 'IoT & Software'];
+  // Using the centralized projects data
+  const allProjects = getAllProjects();
+  
+  const categories = ['todos', ...Array.from(new Set(allProjects.map(project => project.category)))];
   
   const filteredProjects = filter === 'todos' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+    ? allProjects 
+    : allProjects.filter(project => project.category === filter);
 
   return (
     <div className="min-h-screen flex flex-col">

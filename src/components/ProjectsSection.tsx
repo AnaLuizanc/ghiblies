@@ -2,45 +2,14 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getFeaturedProjects } from '@/data/projects';
 
 const ProjectsSection: React.FC = () => {
   const [activeProject, setActiveProject] = useState(0);
   const navigate = useNavigate();
   
-  const projects = [
-    {
-      id: "1",
-      title: "Sistema de Gestão Acadêmica",
-      category: "Desenvolvimento Web",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Desenvolvimento de um sistema integrado para gestão de atividades acadêmicas, incluindo controle de frequência, notas e material didático.",
-      technologies: ["React", "Node.js", "PostgreSQL"]
-    },
-    {
-      id: "2",
-      title: "Aplicativo IFNMG Mobile",
-      category: "Aplicativo Móvel",
-      image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Aplicativo móvel que permite aos alunos e servidores acessarem informações acadêmicas, notícias e serviços do campus.",
-      technologies: ["React Native", "Firebase", "REST API"]
-    },
-    {
-      id: "3",
-      title: "Portal de Eventos",
-      category: "Plataforma Web",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Sistema para gestão de eventos acadêmicos, incluindo inscrições, emissão de certificados e programação.",
-      technologies: ["Vue.js", "Laravel", "MySQL"]
-    },
-    {
-      id: "4",
-      title: "Sistema de Monitoramento de Laboratórios",
-      category: "IoT & Software",
-      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Solução para monitoramento remoto de equipamentos e condições ambientais dos laboratórios do campus.",
-      technologies: ["Python", "Arduino", "MQTT", "MongoDB"]
-    }
-  ];
+  // Using the centralized projects data
+  const projects = getFeaturedProjects(4);
 
   return (
     <section id="projetos" className="py-16 bg-gray-50">
