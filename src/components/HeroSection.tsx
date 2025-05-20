@@ -5,7 +5,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const HeroSection: React.FC = () => {
   return (
-    <section id="hero" className="relative pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-28 md:pb-44 overflow-hidden bg-gradient-to-br from-ndti-950 via-ndti-900 to-ndti-800 dark:from-ndti-950 dark:via-slate-900 dark:to-gray-900">
+    <section id="hero" className="relative pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-40 md:pb-56 overflow-hidden bg-gradient-to-br from-ndti-950 via-ndti-900 to-ndti-800 dark:from-ndti-950 dark:via-slate-900 dark:to-gray-900">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-ifnmg-blue/10 rounded-full blur-3xl animate-pulse"></div>
@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
             --path-fill: #f9fafb;
           }
           
-          .dark {
+          :global(.dark) {
             --path-fill: #1f2937;
           }
         `}</style>
