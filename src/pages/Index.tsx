@@ -10,6 +10,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import TeamSection from '@/components/TeamSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
   // Track scroll progress for progress indicator
@@ -114,6 +115,9 @@ const Index = () => {
         </div>
       </main>
       <Footer />
+      
+      {/* Theme Toggle Button */}
+      <ThemeToggle />
     </div>
   );
 };
