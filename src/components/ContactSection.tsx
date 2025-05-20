@@ -11,7 +11,23 @@ const ContactSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Informações de contato e mapa lado a lado */}
           <div className="w-full flex flex-col md:flex-row gap-6">
-            {/* Informações de contato */}
+            {/* Mapa do Google (agora do lado esquerdo) */}
+            <div className="w-full md:w-1/2">
+              <div className="bg-white rounded-lg shadow-md h-full overflow-hidden">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.8995995802173!2d-43.86345092378849!3d-16.6835069266198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x754ab3f7a4a2b95%3A0xbcaa7c92be1bb844!2sIFNMG%20-%20Campus%20Montes%20Claros!5e0!3m2!1spt-BR!2sbr!4v1720734561991!5m2!1spt-BR!2sbr"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0, minHeight: "350px" }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mapa IFNMG Campus Montes Claros"
+                ></iframe>
+              </div>
+            </div>
+            
+            {/* Informações de contato (agora do lado direito) */}
             <div className="w-full md:w-1/2">
               <div className="bg-white rounded-lg shadow-md p-8">
                 <h3 className="text-2xl font-semibold mb-6 text-ndti-800">Informações de Contato</h3>
@@ -55,22 +71,6 @@ const ContactSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Mapa do Google */}
-            <div className="w-full md:w-1/2">
-              <div className="bg-white rounded-lg shadow-md h-full overflow-hidden">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.8995995802173!2d-43.86345092378849!3d-16.6835069266198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x754ab3f7a4a2b95%3A0xbcaa7c92be1bb844!2sIFNMG%20-%20Campus%20Montes%20Claros!5e0!3m2!1spt-BR!2sbr!4v1720734561991!5m2!1spt-BR!2sbr"
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0, minHeight: "350px" }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Mapa IFNMG Campus Montes Claros"
-                ></iframe>
               </div>
             </div>
           </div>
