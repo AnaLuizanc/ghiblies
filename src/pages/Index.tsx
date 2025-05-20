@@ -5,10 +5,12 @@ import NavBar from '@/components/NavBar';
 import HeroSection from '@/components/HeroSection';
 import NewsCarouselSection from '@/components/NewsCarouselSection';
 import AboutSection from '@/components/AboutSection';
+import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import TeamSection from '@/components/TeamSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+// ThemeToggle import removido
 
 const Index = () => {
   // Controlar o progresso de rolagem para o indicador de progresso
@@ -18,6 +20,7 @@ const Index = () => {
   const [heroRef, heroInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [newsRef, newsInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [aboutRef, aboutInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
+  const [servicesRef, servicesInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [projectsRef, projectsInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [teamRef, teamInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [contactRef, contactInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
@@ -27,10 +30,11 @@ const Index = () => {
     if (heroInView) dispatchSectionEvent('hero');
     else if (newsInView) dispatchSectionEvent('novidades');
     else if (aboutInView) dispatchSectionEvent('sobre');
+    else if (servicesInView) dispatchSectionEvent('servicos');
     else if (projectsInView) dispatchSectionEvent('projetos');
     else if (teamInView) dispatchSectionEvent('equipe');
     else if (contactInView) dispatchSectionEvent('contato');
-  }, [heroInView, newsInView, aboutInView, projectsInView, teamInView, contactInView]);
+  }, [heroInView, newsInView, aboutInView, servicesInView, projectsInView, teamInView, contactInView]);
 
   // Função para despachar evento de mudança de seção
   const dispatchSectionEvent = (section: string) => {
@@ -98,6 +102,9 @@ const Index = () => {
         <div ref={aboutRef}>
           <AboutSection />
         </div>
+        <div ref={servicesRef}>
+          <ServicesSection />
+        </div>
         <div ref={projectsRef}>
           <ProjectsSection />
         </div>
@@ -109,6 +116,8 @@ const Index = () => {
         </div>
       </main>
       <Footer />
+      
+      {/* Botão de alternar tema removido */}
     </div>
   );
 };

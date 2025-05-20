@@ -1,11 +1,9 @@
 
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Linkedin, Github, Mail, ArrowLeft } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getAllTeamMembers } from '@/data/teamMembers';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 const EquipePage: React.FC = () => {
   const { ref, inView } = useInView({ 
@@ -20,16 +18,7 @@ const EquipePage: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow pt-24 pb-16">
         <section className="container mx-auto px-4" ref={ref}>
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold text-ndti-800">Nossa Equipe</h1>
-            <Link to="/">
-              <Button variant="outline" className="flex items-center gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Voltar à Página Inicial
-              </Button>
-            </Link>
-          </div>
-          
+          <h1 className="text-4xl font-bold text-ndti-800 mb-4">Nossa Equipe</h1>
           <p className="text-lg text-gray-600 mb-12 max-w-3xl">
             Conheça os profissionais dedicados que compõem o Núcleo de Desenvolvimento de Tecnologia da Informação 
             do IFNMG Campus Montes Claros. Uma equipe multidisciplinar comprometida com a inovação e excelência.
