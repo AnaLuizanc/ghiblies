@@ -6,6 +6,7 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { getHighlightedTeamMembers } from '@/data/teamMembers';
 
 const TeamSection: React.FC = () => {
   const { ref, inView } = useInView({ 
@@ -13,53 +14,8 @@ const TeamSection: React.FC = () => {
     triggerOnce: true
   });
 
-  // Using the first 4 members from the Equipe page
-  const teamMembers = [
-    {
-      name: "Dr. Ricardo Oliveira",
-      role: "Coordenador do NDTI",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      bio: "Doutor em Ciência da Computação, com mais de 15 anos de experiência em desenvolvimento de software e gestão de projetos tecnológicos.",
-      social: {
-        linkedin: "#",
-        github: "#",
-        email: "ricardo.oliveira@ifnmg.edu.br"
-      }
-    },
-    {
-      name: "Ma. Fernanda Santos",
-      role: "Desenvolvedora Full Stack Sênior",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      bio: "Mestre em Engenharia de Software, especialista em desenvolvimento web e mobile. Coordena os projetos de aplicativos institucionais.",
-      social: {
-        linkedin: "#",
-        github: "#",
-        email: "fernanda.santos@ifnmg.edu.br"
-      }
-    },
-    {
-      name: "Dr. Carlos Mendes",
-      role: "Especialista em Segurança da Informação",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      bio: "Doutor em Segurança Computacional, responsável pela implementação de políticas de segurança nos sistemas desenvolvidos pelo NDTI.",
-      social: {
-        linkedin: "#",
-        github: "#",
-        email: "carlos.mendes@ifnmg.edu.br"
-      }
-    },
-    {
-      name: "Me. Ana Cristina Lima",
-      role: "UX/UI Designer",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      bio: "Mestre em Design de Interação, responsável pela criação de interfaces intuitivas e acessíveis para os sistemas do IFNMG.",
-      social: {
-        linkedin: "#",
-        github: "#",
-        email: "ana.lima@ifnmg.edu.br"
-      }
-    }
-  ];
+  // Utilizando os dados compartilhados dos membros em destaque (primeiros 4)
+  const teamMembers = getHighlightedTeamMembers(4);
 
   return (
     <section id="equipe" className="py-16 bg-white" ref={ref}>
