@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { getAllProjects } from '@/data/projects';
 
 const Projetos: React.FC = () => {
@@ -87,6 +87,17 @@ const Projetos: React.FC = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            
+            {/* Botão de voltar para a página inicial */}
+            <div className="mt-12 text-center">
+              <Link 
+                to="/" 
+                className="inline-flex items-center text-ifnmg-blue hover:text-ndti-700 font-medium"
+              >
+                <ArrowLeft className="mr-1 h-4 w-4" />
+                Voltar para a página inicial
+              </Link>
             </div>
           </div>
         </section>
