@@ -5,8 +5,8 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const HeroSection: React.FC = () => {
   return (
-    <section id="hero" className="relative pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-40 md:pb-56 overflow-hidden bg-gradient-to-br from-ndti-950 via-ndti-900 to-ndti-800 dark:from-ndti-950 dark:via-slate-900 dark:to-gray-900">
-      {/* Decorative elements */}
+    <section id="hero" className="relative pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-40 md:pb-56 overflow-hidden bg-gradient-to-br from-ndti-950 via-ndti-900 to-ndti-800">
+      {/* Elementos decorativos */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-ifnmg-blue/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-ndti-700/10 rounded-full blur-3xl animate-[pulse_8s_ease-in-out_infinite]"></div>
@@ -68,19 +68,15 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
       
-      {/* Bottom wave - now positioned lower */}
+      {/* Onda inferior - agora posicionada mais abaixo */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
-          <path fill="var(--path-fill, #f9fafb)" fillOpacity="1" d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          <path fill="#f9fafb" fillOpacity="1" d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
         <style>
           {`
             :root {
               --path-fill: #f9fafb;
-            }
-            
-            .dark {
-              --path-fill: #1f2937;
             }
           `}
         </style>

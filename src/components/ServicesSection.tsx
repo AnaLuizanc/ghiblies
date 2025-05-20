@@ -5,12 +5,13 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const ServicesSection: React.FC = () => {
-  // Create animation entries for each service card with staggered thresholds
+  // Criar entradas de animação para cada cartão de serviço com thresholds escalonados
   const { ref: sectionRef, inView: sectionInView } = useInView({
     threshold: 0.1,
     triggerOnce: true
   });
 
+  // Array com os serviços oferecidos
   const services = [
     {
       icon: <Code className="h-10 w-10 sm:h-12 sm:w-12 text-ifnmg-blue mb-4 transition-transform group-hover:scale-110 duration-300" />,
@@ -47,6 +48,7 @@ const ServicesSection: React.FC = () => {
   return (
     <section id="servicos" className="py-16 sm:py-20" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6">
+        {/* Cabeçalho da seção */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-ifnmg-blue/10 text-ifnmg-blue mb-4">
             <Zap className="w-4 h-4 mr-2 pulse-glow" />
@@ -60,6 +62,7 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
         
+        {/* Grade de cartões de serviços */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <div 
@@ -82,6 +85,7 @@ const ServicesSection: React.FC = () => {
           ))}
         </div>
         
+        {/* Botão de Call-to-Action */}
         <div className="mt-12 sm:mt-16 text-center">
           <a 
             href="#contato" 

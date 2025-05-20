@@ -14,6 +14,7 @@ import SobreNDTI from "./pages/SobreNDTI";
 import Equipe from "./pages/Equipe";
 import NotFound from "./pages/NotFound";
 
+// Cliente de consulta para requisições à API
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -31,7 +32,7 @@ const App = () => (
           <Route path="/projetos/:id" element={<ProjetoDetalhe />} />
           <Route path="/sobre-ndti" element={<SobreNDTI />} />
           <Route path="/equipe" element={<Equipe />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* ADICIONE TODAS AS ROTAS PERSONALIZADAS ACIMA DA ROTA CATCH-ALL "*" */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
