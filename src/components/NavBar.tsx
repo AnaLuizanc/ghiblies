@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -65,9 +64,8 @@ const NavBar: React.FC = () => {
         { name: "Equipe", link: isHomePage ? "/#equipe" : "/equipe", id: "equipe" },
       ]
     },
-    { name: "Serviços", link: isHomePage ? "/#servicos" : "/", hash: "#servicos", id: "servicos" },
     { name: "Projetos", link: "/projetos", id: "projetos" },
-    { name: "Contato", link: isHomePage ? "/#contato" : "/", hash: "#contato", id: "contato" },
+    { name: "Contato", link: isHomePage ? "/#contato" : "/contato", id: "contato" },
     { name: "Equipamentos", link: "/equipamentos", id: "equipamentos" }
   ];
 
@@ -134,41 +132,22 @@ const NavBar: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  item.hash ? (
-                    <Link
-                      to={`${item.link}${item.hash}`}
-                      onClick={handleLinkClick}
-                      className={cn(
-                        "transition-all duration-300 hover:text-ifnmg-blue relative",
-                        activeSection === item.id 
-                          ? "text-ifnmg-blue font-medium" 
-                          : needsDarkText ? "text-gray-600" : "text-white"
-                      )}
-                    >
-                      {item.name}
-                      <span className={cn(
-                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
-                        activeSection === item.id && "w-full"
-                      )}></span>
-                    </Link>
-                  ) : (
-                    <Link
-                      to={item.link}
-                      onClick={handleLinkClick}
-                      className={cn(
-                        "transition-all duration-300 hover:text-ifnmg-blue relative",
-                        activeSection === item.id 
-                          ? "text-ifnmg-blue font-medium" 
-                          : needsDarkText ? "text-gray-600" : "text-white"
-                      )}
-                    >
-                      {item.name}
-                      <span className={cn(
-                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
-                        activeSection === item.id && "w-full"
-                      )}></span>
-                    </Link>
-                  )
+                  <Link
+                    to={item.link}
+                    onClick={handleLinkClick}
+                    className={cn(
+                      "transition-all duration-300 hover:text-ifnmg-blue relative",
+                      activeSection === item.id 
+                        ? "text-ifnmg-blue font-medium" 
+                        : needsDarkText ? "text-gray-600" : "text-white"
+                    )}
+                  >
+                    {item.name}
+                    <span className={cn(
+                      "absolute -bottom-1 left-0 w-0 h-0.5 bg-ifnmg-blue transform transition-all duration-300 hover:w-full",
+                      activeSection === item.id && "w-full"
+                    )}></span>
+                  </Link>
                 )}
               </div>
             ))}
@@ -233,29 +212,16 @@ const NavBar: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  item.hash ? (
-                    <Link
-                      to={`${item.link}${item.hash}`}
-                      onClick={handleLinkClick}
-                      className={cn(
-                        "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
-                        activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <Link
-                      to={item.link}
-                      onClick={handleLinkClick}
-                      className={cn(
-                        "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
-                        activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  )
+                  <Link
+                    to={item.link}
+                    onClick={handleLinkClick}
+                    className={cn(
+                      "block px-4 py-2.5 text-base hover:bg-gray-50 rounded-md transition-colors",
+                      activeSection === item.id ? "text-ifnmg-blue font-medium" : "text-gray-600"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
                 )}
               </div>
             ))}

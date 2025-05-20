@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Linkedin, Github, Mail } from 'lucide-react';
+import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { getAllTeamMembers } from '@/data/teamMembers';
 
@@ -61,6 +62,17 @@ const EquipePage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+          
+          {/* Botão para voltar à página inicial */}
+          <div className="text-center mt-12">
+            <Link 
+              to="/" 
+              className="inline-flex items-center text-ifnmg-blue hover:text-ndti-700 font-medium"
+            >
+              Voltar para a página inicial
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </div>
         </section>
       </main>
