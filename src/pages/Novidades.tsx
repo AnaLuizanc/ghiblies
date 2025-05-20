@@ -1,55 +1,16 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import { getAllNews } from '@/data/news';
 
 const Novidades: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("todos");
   
-  const news = [
-    {
-      id: 1,
-      title: "Processo Seletivo para Bolsistas",
-      description: "O NDTI está com vagas abertas para estudantes interessados em atuar como bolsistas em projetos de inovação tecnológica. As inscrições podem ser realizadas através do portal do aluno.",
-      date: "2025-05-10",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3",
-      type: "edital"
-    },
-    {
-      id: 3,
-      title: "Workshop de Desenvolvimento Web",
-      description: "Nos dias 15 e 16 de maio, o NDTI realizará um workshop gratuito sobre tecnologias modernas para desenvolvimento web. Inscreva-se e aprenda sobre React, Node.js e muito mais.",
-      date: "2025-04-28",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
-      type: "evento"
-    },
-    {
-      id: 4,
-      title: "Chamada para Projetos de Extensão",
-      description: "O NDTI está recebendo propostas para projetos de extensão na área de tecnologia. Os projetos selecionados receberão suporte técnico e financeiro.",
-      date: "2025-04-20",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3",
-      type: "edital"
-    },
-    {
-      id: 6,
-      title: "Hackathon IFNMG 2025",
-      description: "O maior evento de tecnologia e inovação do Norte de Minas está chegando! Forme sua equipe e participe dessa maratona de desenvolvimento de soluções tecnológicas.",
-      date: "2025-04-10",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3",
-      type: "evento"
-    },
-    {
-      id: 8,
-      title: "Bolsas de Iniciação em Desenvolvimento",
-      description: "Programa oferece bolsas para estudantes interessados em aprender desenvolvimento de software em projetos reais do NDTI.",
-      date: "2025-03-25",
-      image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-4.0.3",
-      type: "edital"
-    }
-  ];
+  // Get all news from centralized data
+  const news = getAllNews();
 
   const filteredNews = activeFilter === "todos" 
     ? news 
@@ -73,7 +34,7 @@ const Novidades: React.FC = () => {
 
           <div className="mb-10">
             <div className="flex flex-wrap gap-3 mb-6">
-              {["todos", "edital", "evento"].map((filter) => (
+              {["todos", "edital", "evento", "projeto"].map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
@@ -84,7 +45,8 @@ const Novidades: React.FC = () => {
                   }`}
                 >
                   {filter === "todos" ? "Todos" : 
-                   filter === "edital" ? "Editais" : "Eventos"}
+                   filter === "edital" ? "Editais" : 
+                   filter === "projeto" ? "Projetos" : "Eventos"}
                 </button>
               ))}
             </div>
@@ -105,9 +67,11 @@ const Novidades: React.FC = () => {
                     <div className="flex justify-between items-start mb-3">
                       <span className={`text-xs font-semibold px-2 py-1 rounded-full inline-block ${
                         item.type === 'edital' ? 'bg-ndti-500 text-white' : 
+                        item.type === 'projeto' ? 'bg-ifnmg-blue text-white' :
                         'bg-gray-100 text-ndti-800'
                       }`}>
-                        {item.type === 'edital' ? 'Edital' : 'Evento'}
+                        {item.type === 'edital' ? 'Edital' : 
+                         item.type === 'projeto' ? 'Projeto' : 'Evento'}
                       </span>
                       <span className="text-sm text-gray-500">
                         {new Date(item.date).toLocaleDateString('pt-BR')}

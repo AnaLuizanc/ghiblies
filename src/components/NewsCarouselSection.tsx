@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   Carousel,
@@ -9,42 +9,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getFeaturedNews } from '@/data/news';
 
 const NewsCarouselSection: React.FC = () => {
   const [api, setApi] = useState<any>();
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // News carousel items
-  const newsItems = [
-    {
-      id: 1,
-      title: "Processo Seletivo para Bolsistas",
-      description: "Novas vagas para bolsistas em projetos de inovação tecnológica.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3",
-      type: "edital"
-    },
-    {
-      id: 2,
-      title: "Sistema de Gestão de Laboratórios",
-      description: "Novo projeto para monitoramento e controle de equipamentos.",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3",
-      type: "projeto"
-    },
-    {
-      id: 3,
-      title: "Workshop de Desenvolvimento Web",
-      description: "Inscrições abertas para capacitação em tecnologias front-end.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
-      type: "evento"
-    },
-    {
-      id: 4,
-      title: "Chamada para Projetos de Extensão",
-      description: "Submeta sua proposta para o programa de extensão tecnológica.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3",
-      type: "edital"
-    }
-  ];
+  
+  // Get featured news items from centralized data
+  const newsItems = getFeaturedNews(4);
 
   // Auto-advance slides
   useEffect(() => {
