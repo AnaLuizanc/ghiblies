@@ -13,10 +13,10 @@ import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
-  // Rastrear o progresso de rolagem para o indicador de progresso
+  // Track scroll progress for progress indicator
   const [scrollProgress, setScrollProgress] = useState(0);
   
-  // Criar refs para cada seção com threshold e rootMargin para melhor detecção
+  // Create refs for each section with threshold and rootMargin for better detection
   const [heroRef, heroInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [newsRef, newsInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [aboutRef, aboutInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
@@ -25,7 +25,7 @@ const Index = () => {
   const [teamRef, teamInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
   const [contactRef, contactInView] = useInView({ threshold: 0.3, rootMargin: "-100px 0px" });
 
-  // Atualizar seção ativa com base em qual seção está em visualização
+  // Update active section based on which section is in view
   useEffect(() => {
     if (heroInView) dispatchSectionEvent('hero');
     else if (newsInView) dispatchSectionEvent('novidades');
@@ -42,7 +42,7 @@ const Index = () => {
     );
   };
 
-  // Rastrear o progresso de rolagem para o indicador de progresso
+  // Track scroll progress for progress indicator
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.body.scrollHeight - window.innerHeight;
@@ -54,17 +54,17 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Implementar carregamento lazy para imagens
+  // Implement lazy loading for images
   useEffect(() => {
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     
     if ('loading' in HTMLImageElement.prototype) {
-      // O navegador suporta lazy loading nativo
+      // Browser supports native lazy loading
       lazyImages.forEach(img => {
         img.classList.add('lazy-loaded');
       });
     } else {
-      // Fallback para navegadores que não suportam lazy loading nativo
+      // Fallback for browsers that don't support native lazy loading
       const lazyImageObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -84,7 +84,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Indicador de progresso */}
+      {/* Progress indicator */}
       <div 
         className="progress-indicator"
         style={{ width: `${scrollProgress}%` }}
@@ -116,7 +116,7 @@ const Index = () => {
       </main>
       <Footer />
       
-      {/* ThemeToggle ainda está aqui, mas invisível e apenas para configurar o tema escuro */}
+      {/* Theme Toggle Button */}
       <ThemeToggle />
     </div>
   );

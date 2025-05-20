@@ -7,14 +7,12 @@ const Footer: React.FC = () => {
     <footer className="bg-ndti-950 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Seção de informações sobre o NDTI */}
           <div>
             <h3 className="text-xl font-bold mb-4">NDTI</h3>
             <p className="text-gray-300 mb-4">
               Núcleo de Desenvolvimento Tecnológico e Inovação do IFNMG Campus Montes Claros
             </p>
             <div className="flex space-x-4">
-              {/* Ícones de redes sociais */}
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
@@ -30,7 +28,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
           
-          {/* Links rápidos para navegação */}
           <div>
             <h3 className="text-xl font-bold mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
@@ -43,7 +40,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
-          {/* Links institucionais */}
           <div>
             <h3 className="text-xl font-bold mb-4">Links Institucionais</h3>
             <ul className="space-y-2">
@@ -55,7 +51,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
-          {/* Formulário de newsletter */}
           <div>
             <h3 className="text-xl font-bold mb-4">Newsletter</h3>
             <p className="text-gray-300 mb-4">
@@ -77,7 +72,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        {/* Rodapé com copyright e links adicionais */}
         <div className="border-t border-ndti-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © {new Date().getFullYear()} NDTI - IFNMG Campus Montes Claros. Todos os direitos reservados.
