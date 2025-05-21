@@ -18,13 +18,13 @@ const NewsCarouselSection: React.FC = () => {
   // Get featured news items from centralized data
   const newsItems = getFeaturedNews(4);
 
-  // Auto-advance slides
+  // Auto-advance slides with a slightly slower timing (5 seconds)
   useEffect(() => {
     if (!api) return;
 
     const interval = setInterval(() => {
       api.next();
-    }, 4000); // Change slide every 4 seconds
+    }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
   }, [api]);
@@ -123,8 +123,17 @@ const NewsCarouselSection: React.FC = () => {
               ))}
             </div>
             
-            <CarouselPrevious className="left-2 lg:-left-12" />
-            <CarouselNext className="right-2 lg:-right-12" />
+            {/* Make the navigation arrows more visible and always present */}
+            <CarouselPrevious 
+              className="left-2 lg:-left-12 opacity-80 hover:opacity-100 transition-opacity" 
+              variant="secondary"
+              size="icon"
+            />
+            <CarouselNext 
+              className="right-2 lg:-right-12 opacity-80 hover:opacity-100 transition-opacity"
+              variant="secondary"
+              size="icon"
+            />
           </Carousel>
         </div>
       </div>
