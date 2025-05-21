@@ -15,80 +15,60 @@ const Equipamentos: React.FC = () => {
       id: "EQ001",
       name: "Monitor Dell P2419H",
       category: "Monitores",
-      location: "Laboratório 01",
-      status: "Disponível",
       description: "Monitor LED IPS 24 polegadas Full HD"
     },
     {
       id: "EQ002",
       name: "Notebook Dell Latitude 5420",
       category: "Notebooks",
-      location: "Sala dos Professores",
-      status: "Em uso",
       description: "Intel Core i5, 16GB RAM, 256GB SSD"
     },
     {
       id: "EQ003",
       name: "Projetor Epson PowerLite S41+",
       category: "Projetores",
-      location: "Auditório",
-      status: "Disponível",
       description: "3300 lumens, SVGA"
     },
     {
       id: "EQ004",
       name: "Impressora HP LaserJet Pro M404dw",
       category: "Impressoras",
-      location: "Secretaria",
-      status: "Em manutenção",
       description: "Impressora laser monocromática"
     },
     {
       id: "EQ005",
       name: "Computador Dell OptiPlex 7070",
       category: "Desktops",
-      location: "Laboratório 02",
-      status: "Disponível",
       description: "Intel Core i7, 32GB RAM, 512GB SSD"
     },
     {
       id: "EQ006",
       name: "Switch Cisco Catalyst 2960",
       category: "Redes",
-      location: "Sala de Servidores",
-      status: "Em uso",
       description: "48 portas Gigabit Ethernet"
     },
     {
       id: "EQ007",
       name: "Scanner HP ScanJet Pro 3000",
       category: "Scanners",
-      location: "Biblioteca",
-      status: "Disponível",
       description: "Scanner de mesa com alimentador automático"
     },
     {
       id: "EQ008",
       name: "Tablet Samsung Galaxy Tab S7",
       category: "Tablets",
-      location: "Coordenação",
-      status: "Em uso",
       description: "11 polegadas, 128GB, S Pen incluída"
     },
     {
       id: "EQ009",
       name: "Servidor Dell PowerEdge R740",
       category: "Servidores",
-      location: "Sala de Servidores",
-      status: "Em uso",
       description: "Dual Intel Xeon Silver, 64GB RAM, 4x 1TB SSD RAID"
     },
     {
       id: "EQ010",
       name: "Webcam Logitech C920",
       category: "Periféricos",
-      location: "Laboratório 03",
-      status: "Disponível",
       description: "Full HD 1080p"
     }
   ];
@@ -99,15 +79,6 @@ const Equipamentos: React.FC = () => {
     .filter(eq => eq.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                   eq.id.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter(eq => activeCategory === "todos" || eq.category === activeCategory);
-
-  const statusColor = (status: string) => {
-    switch (status) {
-      case "Disponível": return "bg-green-100 text-green-800";
-      case "Em uso": return "bg-blue-100 text-blue-800";
-      case "Em manutenção": return "bg-orange-100 text-orange-800";
-      default: return "bg-gray-100 text-gray-800";
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -121,7 +92,7 @@ const Equipamentos: React.FC = () => {
               Equipamentos
             </h1>
             <p className="text-gray-600 max-w-3xl">
-              Consulte a lista completa de equipamentos disponíveis no NDTI, incluindo detalhes técnicos e localização.
+              Consulte a lista completa de equipamentos disponíveis no NDTI, incluindo detalhes técnicos.
             </p>
           </header>
 
@@ -162,9 +133,7 @@ const Equipamentos: React.FC = () => {
                     <TableHead className="w-[100px]">Código</TableHead>
                     <TableHead>Nome</TableHead>
                     <TableHead className="hidden md:table-cell">Categoria</TableHead>
-                    <TableHead className="hidden md:table-cell">Localização</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="hidden lg:table-cell">Descrição</TableHead>
+                    <TableHead>Descrição</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -174,18 +143,12 @@ const Equipamentos: React.FC = () => {
                         <TableCell className="font-medium">{equipment.id}</TableCell>
                         <TableCell>{equipment.name}</TableCell>
                         <TableCell className="hidden md:table-cell">{equipment.category}</TableCell>
-                        <TableCell className="hidden md:table-cell">{equipment.location}</TableCell>
-                        <TableCell>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColor(equipment.status)}`}>
-                            {equipment.status}
-                          </span>
-                        </TableCell>
-                        <TableCell className="hidden lg:table-cell text-sm text-gray-500">{equipment.description}</TableCell>
+                        <TableCell className="text-sm text-gray-500">{equipment.description}</TableCell>
                       </TableRow>
                     ))
                   ) : (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-gray-500">
+                      <TableCell colSpan={4} className="text-center py-8 text-gray-500">
                         Nenhum equipamento encontrado com os filtros atuais.
                       </TableCell>
                     </TableRow>

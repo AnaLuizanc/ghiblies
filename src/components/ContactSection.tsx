@@ -15,7 +15,7 @@ const ContactSection: React.FC = () => {
             <div className="w-full md:w-1/2">
               <div className="bg-white rounded-lg shadow-md h-full overflow-hidden">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.8995995802173!2d-43.86345092378849!3d-16.6835069266198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x754ab3f7a4a2b95%3A0xbcaa7c92be1bb844!2sIFNMG%20-%20Campus%20Montes%20Claros!5e0!3m2!1spt-BR!2sbr!4v1720734561991!5m2!1spt-BR!2sbr"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1910.917129801705!2d-43.8288557823784!3d-16.68517527318592!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x754aa52e8405187%3A0x44d36bc1df7549bc!2sInstituto%20Federal%20do%20Norte%20de%20Minas%20Gerais%20-%20Campus%20Montes%20Claros!5e0!3m2!1spt-BR!2sbr!4v1747848055794!5m2!1spt-BR!2sbr"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: "350px" }} 
