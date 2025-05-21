@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code, Database, Server, Monitor, Cpu, Smartphone, ArrowRight, Zap } from 'lucide-react';
+import { Code, Database, Server, Monitor, Cpu, Smartphone, Zap } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
@@ -78,23 +78,14 @@ const ServicesSection: React.FC = () => {
               <p className="text-gray-600 text-center">{service.description}</p>
               <div className="mt-6 flex justify-center">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center transform opacity-0 group-hover:opacity-100 transition-all duration-300 scale-50 group-hover:scale-100">
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-ifnmg-blue" />
+                  {/* ArrowRight foi removido daqui junto com o import */}
                 </div>
               </div>
             </div>
           ))}
         </div>
         
-        {/* Botão de Call-to-Action */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <a 
-            href="#contato" 
-            className="px-6 sm:px-8 py-2.5 sm:py-3 bg-ifnmg-blue text-white rounded-md hover:bg-ndti-800 transition-all duration-300 inline-flex items-center group hover:shadow-lg hover:shadow-ifnmg-blue/30"
-          >
-            Solicite um Serviço
-            <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
+        {/* Botão de Call-to-Action removido */}
       </div>
     </section>
   );
