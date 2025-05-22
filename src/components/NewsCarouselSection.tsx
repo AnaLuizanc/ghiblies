@@ -9,25 +9,58 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { getFeaturedNews } from '@/data/news';
+
+// Local news data instead of importing from an external source
+const newsItems = [
+  {
+    id: 1,
+    title: "Processo Seletivo para Bolsistas",
+    description: "Novas vagas para bolsistas em projetos de inovação tecnológica. O NDTI está com vagas abertas para estudantes interessados em atuar como bolsistas em projetos de inovação tecnológica. As inscrições podem ser realizadas através do portal do aluno.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3",
+    type: "edital",
+    date: "2025-05-10"
+  },
+  {
+    id: 2,
+    title: "Sistema de Gestão de Laboratórios",
+    description: "Novo projeto para monitoramento e controle de equipamentos. Esta solução inovadora permitirá o acompanhamento em tempo real das condições dos laboratórios do campus.",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3",
+    type: "projeto",
+    date: "2025-05-05"
+  },
+  {
+    id: 3,
+    title: "Workshop de Desenvolvimento Web",
+    description: "Inscrições abertas para capacitação em tecnologias front-end. Nos dias 15 e 16 de maio, o NDTI realizará um workshop gratuito sobre tecnologias modernas para desenvolvimento web.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
+    type: "evento",
+    date: "2025-04-28"
+  },
+  {
+    id: 4,
+    title: "Chamada para Projetos de Extensão",
+    description: "Submeta sua proposta para o programa de extensão tecnológica. O NDTI está recebendo propostas para projetos de extensão na área de tecnologia.",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3",
+    type: "edital",
+    date: "2025-04-20"
+  }
+];
 
 const NewsCarouselSection: React.FC = () => {
   const [api, setApi] = useState<any>();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoAdvance, setAutoAdvance] = useState(true);
   
-  // Get featured news items from centralized data
-  const newsItems = getFeaturedNews(4);
-
-  // Auto-advance slides with a slightly slower timing (5 seconds)
+  // Auto-advance slides
   useEffect(() => {
-    if (!api) return;
+    if (!api || !autoAdvance) return;
 
     const interval = setInterval(() => {
       api.next();
-    }, 5000); // Change slide every 5 seconds
+    }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [api]);
+  }, [api, autoAdvance]);
 
   // Update current slide when API changes
   useEffect(() => {
@@ -42,6 +75,10 @@ const NewsCarouselSection: React.FC = () => {
       api.off("select", onSelect);
     };
   }, [api]);
+
+  // Pause auto-advance on hover
+  const handleMouseEnter = () => setAutoAdvance(false);
+  const handleMouseLeave = () => setAutoAdvance(true);
 
   return (
     <section className="py-8 bg-gradient-to-b from-ndti-50 to-white">
@@ -59,7 +96,11 @@ const NewsCarouselSection: React.FC = () => {
           </Link>
         </div>
         
-        <div className="relative">
+        <div 
+          className="relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <Carousel 
             setApi={setApi} 
             className="w-full"
@@ -80,6 +121,7 @@ const NewsCarouselSection: React.FC = () => {
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
                       />
                     </div>
                     
@@ -123,7 +165,7 @@ const NewsCarouselSection: React.FC = () => {
               ))}
             </div>
             
-            {/* Make the navigation arrows more visible and always present */}
+            {/* Navigation arrows */}
             <CarouselPrevious 
               className="left-2 lg:-left-12 opacity-80 hover:opacity-100 transition-opacity" 
               variant="secondary"
