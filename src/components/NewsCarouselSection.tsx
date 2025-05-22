@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -56,7 +55,7 @@ const NewsCarouselSection: React.FC = () => {
     if (!api || !autoAdvance) return;
 
     const interval = setInterval(() => {
-      api.next();
+      api.scrollNext(); // Using scrollNext() instead of next()
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
