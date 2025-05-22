@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -47,35 +46,38 @@ const newsItems = [
 ];
 
 const NewsCarouselSection: React.FC = () => {
+  const [api, setApi] = useState<any>();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoAdvance, setAutoAdvance] = useState(true);
   
-  // Auto-advance slides with timer instead of API
+  // Auto-advance slides
   useEffect(() => {
-    if (!autoAdvance) return;
+    if (!api || !autoAdvance) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % newsItems.length);
+      api.scrollNext(); // Using scrollNext() instead of next()
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [autoAdvance]);
+  }, [api, autoAdvance]);
+
+  // Update current slide when API changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   // Pause auto-advance on hover
   const handleMouseEnter = () => setAutoAdvance(false);
   const handleMouseLeave = () => setAutoAdvance(true);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % newsItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + newsItems.length) % newsItems.length);
-  };
 
   return (
     <section className="py-8 bg-gradient-to-b from-ndti-50 to-white">
@@ -98,15 +100,19 @@ const NewsCarouselSection: React.FC = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="overflow-hidden relative">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out" 
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
+          <Carousel 
+            setApi={setApi} 
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
               {newsItems.map((item) => (
-                <div 
+                <CarouselItem 
                   key={item.id} 
-                  className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-4"
+                  className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="relative overflow-hidden rounded-xl group card-hover">
                     <div className="aspect-ratio h-48 md:h-64 overflow-hidden">
@@ -139,15 +145,15 @@ const NewsCarouselSection: React.FC = () => {
                       </Link>
                     </div>
                   </div>
-                </div>
+                </CarouselItem>
               ))}
-            </div>
+            </CarouselContent>
             
             <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2">
               {newsItems.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => goToSlide(idx)}
+                  onClick={() => api?.scrollTo(idx)}
                   className={`w-2 h-2 rounded-full transition-all ${
                     currentSlide === idx 
                       ? "w-6 bg-ifnmg-blue" 
@@ -159,21 +165,17 @@ const NewsCarouselSection: React.FC = () => {
             </div>
             
             {/* Navigation arrows */}
-            <button 
-              className="absolute top-1/2 -translate-y-1/2 left-2 lg:-left-12 opacity-80 hover:opacity-100 transition-opacity bg-white/80 rounded-full p-2"
-              onClick={prevSlide}
-              aria-label="Previous slide"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            <button 
-              className="absolute top-1/2 -translate-y-1/2 right-2 lg:-right-12 opacity-80 hover:opacity-100 transition-opacity bg-white/80 rounded-full p-2"
-              onClick={nextSlide}
-              aria-label="Next slide"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
+            <CarouselPrevious 
+              className="left-2 lg:-left-12 opacity-80 hover:opacity-100 transition-opacity" 
+              variant="secondary"
+              size="icon"
+            />
+            <CarouselNext 
+              className="right-2 lg:-right-12 opacity-80 hover:opacity-100 transition-opacity"
+              variant="secondary"
+              size="icon"
+            />
+          </Carousel>
         </div>
       </div>
     </section>
