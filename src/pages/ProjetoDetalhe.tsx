@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -9,6 +9,11 @@ import { getProjectById } from '@/data/projects';
 const ProjetoDetalhe: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  
+  // Efeito para rolar a página para o topo quando o componente é montado
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Using the centralized projects data
   const project = getProjectById(id || "");

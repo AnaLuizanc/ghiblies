@@ -16,7 +16,7 @@ const EquipePage: React.FC = () => {
   const teamMembers = getAllTeamMembers();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       <main className="flex-grow pt-24 pb-16">
         <section className="container mx-auto px-4" ref={ref}>
           <h1 className="text-4xl font-bold text-ndti-800 mb-4">Nossa Equipe</h1>

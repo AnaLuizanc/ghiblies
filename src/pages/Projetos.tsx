@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -9,6 +9,11 @@ import { getAllProjects } from '@/data/projects';
 const Projetos: React.FC = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('todos');
+  
+  // Efeito para rolar a página para o topo quando o componente é montado
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Using the centralized projects data
   const allProjects = getAllProjects();

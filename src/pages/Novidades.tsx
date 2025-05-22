@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
@@ -8,6 +8,11 @@ import { getAllNews } from '@/data/news';
 
 const Novidades: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("todos");
+  
+  // Efeito para rolar a página para o topo quando o componente é montado
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Get all news from centralized data
   const news = getAllNews();
